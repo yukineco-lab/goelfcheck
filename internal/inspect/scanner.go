@@ -10,9 +10,9 @@ import (
 const maxPathFindings = 100
 
 var absolutePathPatterns = []*regexp.Regexp{
-	regexp.MustCompile(`/(home|Users|usr/local|opt|var|tmp)/[A-Za-z0-9._@%+\-/]+`),
+	regexp.MustCompile(`/(home|Users|tmp)/[A-Za-z0-9._@%+\-/]+`),
 	regexp.MustCompile(`[A-Za-z]:\\[A-Za-z0-9._@%+\- ]{2,}(?:\\[A-Za-z0-9._@%+\- ]+)+`),
-	regexp.MustCompile(`\\\\[A-Za-z0-9._-]+\\[A-Za-z0-9._@%+\-\\ ]+`),
+	regexp.MustCompile(`\\\\[A-Za-z0-9._-]{2,}\\[A-Za-z0-9._@%+\- ]{2,}(?:\\[A-Za-z0-9._@%+\- ]{2,})+`),
 }
 
 func scanStrings(path string) (StringScan, error) {
