@@ -1,0 +1,5 @@
+.gocache/
+/goelfcheck
+/goelfcheck.exe
+/testdata/sample_default
+/testdata/sample_hardened
