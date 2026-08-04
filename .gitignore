@@ -3,3 +3,7 @@
 /goelfcheck.exe
 /testdata/sample_default
 /testdata/sample_hardened
+/examples/stacktrace/stacktrace-default
+/examples/stacktrace/stacktrace-default.exe
+/examples/stacktrace/stacktrace-trimpath
+/examples/stacktrace/stacktrace-trimpath.exe

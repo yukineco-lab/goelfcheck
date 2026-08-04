@@ -34,3 +34,23 @@ go build \
 - Static and dynamic symbol tables
 - Absolute path-like strings such as `/home/...`, `/Users/...`, `C:\Users\...`,
   and `D:\...`
+
+## Stack Trace Trimpath Demo
+
+`examples/stacktrace` contains a tiny program that intentionally panics. Build it
+twice to compare stack traces.
+
+```sh
+cd examples/stacktrace
+
+go build -o stacktrace-default .
+./stacktrace-default
+
+go build -trimpath -o stacktrace-trimpath .
+./stacktrace-trimpath
+```
+
+Without `-trimpath`, stack frames usually include the local checkout path, such
+as `/home/user/goelfcheck/examples/stacktrace/main.go`. With `-trimpath`, that
+path is shortened to module/package form, such as
+`goelfcheck/examples/stacktrace/main.go`.
