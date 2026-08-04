@@ -1,7 +1,7 @@
 # Stack Trace Trimpath Demo
 
-This sample intentionally panics so you can compare stack traces with and without
-`-trimpath`.
+This sample prints `runtime.Caller()` frames and then intentionally panics so
+you can compare file paths with and without `-trimpath`.
 
 ## Build and Run
 
@@ -13,6 +13,7 @@ go build -o stacktrace-default .
 The stack trace normally includes the local checkout path:
 
 ```text
+/home/user/goelfcheck/examples/stacktrace/main.go
 /home/user/goelfcheck/examples/stacktrace/main.go:15
 ```
 
@@ -26,5 +27,18 @@ go build -trimpath -o stacktrace-trimpath .
 The stack trace uses the module/package path instead:
 
 ```text
+goelfcheck/examples/stacktrace/main.go
 goelfcheck/examples/stacktrace/main.go:15
+```
+
+The same difference appears in `runtime.Caller()` output before the panic:
+
+```text
+skip=0 func=main.printCallerFrames file=/home/user/goelfcheck/examples/stacktrace/main.go line=...
+```
+
+With `-trimpath`:
+
+```text
+skip=0 func=main.printCallerFrames file=goelfcheck/examples/stacktrace/main.go line=...
 ```

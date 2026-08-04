@@ -37,8 +37,8 @@ go build \
 
 ## Stack Trace Trimpath Demo
 
-`examples/stacktrace` contains a tiny program that intentionally panics. Build it
-twice to compare stack traces.
+`examples/stacktrace` contains a tiny program that prints `runtime.Caller()`
+frames and then intentionally panics. Build it twice to compare file paths.
 
 ```sh
 cd examples/stacktrace
@@ -50,7 +50,8 @@ go build -trimpath -o stacktrace-trimpath .
 ./stacktrace-trimpath
 ```
 
-Without `-trimpath`, stack frames usually include the local checkout path, such
-as `/home/user/goelfcheck/examples/stacktrace/main.go`. With `-trimpath`, that
-path is shortened to module/package form, such as
+Without `-trimpath`, `runtime.Caller()` and panic stack frames usually include
+the local checkout path, such as
+`/home/user/goelfcheck/examples/stacktrace/main.go`. With `-trimpath`, that path
+is shortened to module/package form, such as
 `goelfcheck/examples/stacktrace/main.go`.
